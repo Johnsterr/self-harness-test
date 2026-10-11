@@ -1,23 +1,128 @@
+/* Google Fonts via CDN — avoids Turbopack font resolution issues */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&family=Geist+Mono:wght@400;500;600;700&display=swap');
+
 @import "tailwindcss";
 
 @theme inline {
-  --color-graphite-900: #0d0f13;
-  --color-graphite-800: #161920;
-  --color-graphite-700: #1e222b;
+  --color-graphite-900: #0b0d11;
+  --color-graphite-800: #12151c;
+  --color-graphite-700: #1a1f27;
+  --color-graphite-600: #232a35;
   --color-cyan-500: #06c3d6;
+  --color-cyan-400: #22d4e6;
+  --color-cyan-300: #5ce0ee;
   --color-cyan-600: #0499a8;
   --color-violet-500: #7c5cbf;
+  --color-violet-400: #9b7ae0;
   --color-violet-600: #6a49a8;
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: 'Inter', sans-serif;
+  --font-mono: 'Geist Mono', monospace;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes drift {
+  0% { transform: translateX(-5%) translateY(2%); }
+  100% { transform: translateX(5%) translateY(-2%); }
 }
 
 body {
   background: var(--color-graphite-900);
   color: #e2e8f0;
-  font-family: var(--font-sans);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 canvas {
   outline: none;
+}
+
+/* Noise overlay for premium texture */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Subtle gradient line divider */
+.gradient-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-cyan-500) 50%, transparent);
+  opacity: 0.3;
+}
+
+/* Glass effect */
+.glass {
+  background: rgba(26, 31, 39, 0.4);
+  backdrop-filter: blur(20px) saturate(150%);
+  -webkit-backdrop-filter: blur(20px) saturate(150%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* Glow text */
+.glow-text {
+  text-shadow: 0 0 40px rgba(6, 195, 214, 0.15), 0 0 80px rgba(6, 195, 214, 0.05);
+}
+
+/* Premium button */
+.btn-premium {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-premium::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(6, 195, 214, 0.2) 0%, rgba(124, 92, 191, 0.2) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-premium:hover::before {
+  opacity: 1;
+}
+
+/* Section fade-in animation */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-section {
+  animation: fade-in-up 0.8s ease-out both;
+}
+
+/* Orbit ring animation */
+@keyframes orbit {
+  from { transform: rotate(0deg) rotateX(65deg); }
+  to { transform: rotate(360deg) rotateX(65deg); }
+}
+
+/* Grid background pattern */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 60px 60px;
 }
