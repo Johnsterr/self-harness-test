@@ -5,8 +5,8 @@
 
 - Next.js App Router, TypeScript и Tailwind;
 - отдельный client component для Canvas;
-- загрузка `/models/ai-core.glb` через `useGLTF`;
-- полноэкранный hero: текст слева, AI Core справа;
+- загрузка `/models/rocket.glb` через `useGLTF`;
+- полноэкранный hero: текст слева, Rocket справа;
 - camera около [0, 0, 4.5], мягкий свет без тяжёлого postprocessing;
 - очень небольшая реакция объекта на mouse/pointer;
 - отключить постоянную анимацию при `prefers-reduced-motion`;
