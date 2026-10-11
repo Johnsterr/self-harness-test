@@ -9,7 +9,7 @@ Read `docs/brief.md` before planning or editing.
 
 - TypeScript, Next.js 16 App Router, React 19, Tailwind CSS.
 - Three.js through React Three Fiber and Drei.
-- The model lives at `app/public/models/ai-core.glb`.
+- The model lives at `app/public/models/rocket.glb`.
 
 ## Working rules
 
