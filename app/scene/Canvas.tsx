@@ -33,7 +33,7 @@ function Rocket(props: { mousePos: THREE.Vector2; reducedMotion: boolean }) {
   );
 }
 
-function Scene() {
+function Scene({ onError }: { onError?: () => void }) {
   const [mousePos, setMousePos] = useState<THREE.Vector2>(new THREE.Vector2(0, 0));
   const [reducedMotion, setReducedMotion] = useState(() => {
     if (typeof window === 'undefined') return false;
@@ -70,6 +70,7 @@ function Scene() {
       <Canvas
         camera={{ position: [0, 0, 3.5], fov: 60 }}
         style={{ background: '#0d0f13' }}
+        onError={onError}
       >
         <color attach="background" args={['#0d0f13']} />
         <ambientLight intensity={0.6} />
@@ -84,9 +85,17 @@ function Scene() {
 }
 
 export default function CanvasScene() {
+  const [error, setError] = useState(false);
+
   return (
     <div className="relative w-full h-full">
-      <Scene />
+      {error ? (
+        <div className="w-full h-full flex items-center justify-center bg-graphite-800 rounded-2xl">
+          <p className="text-gray-400 text-sm">3D view unavailable</p>
+        </div>
+      ) : (
+        <Scene onError={() => { console.error('R3F error'); setError(true); }} />
+      )}
     </div>
   );
 }
