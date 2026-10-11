@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-graphite-900: #0d0f13;
+  --color-graphite-800: #161920;
+  --color-graphite-700: #1e222b;
+  --color-cyan-500: #06c3d6;
+  --color-cyan-600: #0499a8;
+  --color-violet-500: #7c5cbf;
+  --color-violet-600: #6a49a8;
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--color-graphite-900);
+  color: #e2e8f0;
+  font-family: var(--font-sans);
+}
+
+canvas {
+  outline: none;
+}
